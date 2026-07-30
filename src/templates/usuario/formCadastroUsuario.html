@@ -1,0 +1,41 @@
+{% extends "template.html" %}
+{% block conteudo  %}
+    <header class="navbar navbar-dark bg-dark px-4 py-3 shadow-sm justify-content-between">
+        <h1 class="navbar-brand h1 mb-0 fs-3">{{ titulo }}</h1>
+        <div>
+            <a href="{{ url_for('usuario.login') }}" class="btn btn-danger ">Login</a>
+        </div>
+    </header>
+
+    <div class="container mt-5">
+      <form class="container w-25 mx-auto p-4 shadow rounded" action="{{ url_for('usuario.adicionar_usuario') }}" method="POST">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome de usuário..." required>
+            </div>
+
+            <div class="mb-3">
+                <label for="apelido" class="form-label">Apelido</label>
+                <input type="text" class="form-control" id="apelido" name="apelido" placeholder="Digite seu apelido..." required>
+            </div>
+
+            <div class="mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha..." required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-enviar">Cadastrar</button>
+        </form><br>
+        <p>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul id="messages" class="list-unstyled">
+                    {% for message in messages %}
+                        <li class="alert alert-success">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </p>
+    </div>
+{% endblock %}

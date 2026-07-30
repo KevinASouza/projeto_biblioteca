@@ -1,0 +1,5 @@
+src/certs
+.venv
+__pycache__
+.env
+.idea
